@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/recordsFragment">
+
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="altline.recap.ui.records.RecordsFragment"
+        android:label="@string/title_records"
+        tools:layout="@layout/fragment_records" />
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="altline.recap.ui.calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/remindersFragment"
+        android:name="altline.recap.ui.reminders.RemindersFragment"
+        android:label="@string/title_reminders"
+        tools:layout="@layout/fragment_reminders" />
+</navigation>
