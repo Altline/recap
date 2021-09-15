@@ -21,8 +21,12 @@ class DatabaseModule {
             appContext,
             AppDatabase::class.java,
             "app_database.db"
-        ).build()
+        ).fallbackToDestructiveMigration() // TODO temp
+            .build()
     }
+
+    @Provides
+    fun provideDayDao(appDatabase: AppDatabase) = appDatabase.dayDao()
 
     @Provides
     fun provideRecordDao(appDatabase: AppDatabase) = appDatabase.recordDao()

@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Recap</string>
 
-    <string name="title_records">Recap</string>
+    <string name="title_history">Recap</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_reminders">Reminders</string>
+
+    <string name="template_record_text">\u2023 %s</string>
 </resources>

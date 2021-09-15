@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.Recap.History.DayDate" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textSize">@dimen/textsize_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

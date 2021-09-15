@@ -3,4 +3,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="divider_small">4dp</dimen>
+    <dimen name="divider">8dp</dimen>
+    <dimen name="divider_large">16dp</dimen>
+    <dimen name="divider_huge">32dp</dimen>
+
+    <dimen name="textsize_huge">22sp</dimen>
+    <dimen name="textsize_large">18sp</dimen>
 </resources>
