@@ -4,13 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/recordsFragment">
+    app:startDestination="@+id/historyFragment">
 
     <fragment
-        android:id="@+id/recordsFragment"
+        android:id="@+id/historyFragment"
         android:name="altline.recap.ui.history.HistoryFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_records" />
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_historyToDay"
+            app:destination="@id/dayFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/calendarFragment"
@@ -23,4 +27,17 @@
         android:name="altline.recap.ui.reminders.RemindersFragment"
         android:label="@string/title_reminders"
         tools:layout="@layout/fragment_reminders" />
+
+    <fragment
+        android:id="@+id/dayFragment"
+        android:name="altline.recap.ui.day.DayFragment"
+        tools:layout="@layout/fragment_day">
+        <argument
+            android:name="dayID"
+            app:argType="long" />
+        <argument
+            android:name="autoNewRecord"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
 </navigation>

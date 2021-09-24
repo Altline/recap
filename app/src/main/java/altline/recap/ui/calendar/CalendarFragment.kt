@@ -1,12 +1,12 @@
 package altline.recap.ui.calendar
 
-import androidx.lifecycle.ViewModelProvider
+import altline.recap.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import altline.recap.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 
 class CalendarFragment : Fragment() {
 

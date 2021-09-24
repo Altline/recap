@@ -11,6 +11,8 @@ data class DayContent(
         entityColumn = "dayID"
     ) val records: List<Record>
 ) {
+    val orderedRecords get() = records.sortedBy { it.order }
+
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DayContent>() {
             override fun areItemsTheSame(a: DayContent, b: DayContent) = a.day.id == b.day.id

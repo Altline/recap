@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="record"
+            type="altline.recap.data.Record" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/container_padding"
+            android:orientation="horizontal">
+
+            <ViewSwitcher
+                android:id="@+id/recordTextSwitcher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/record_tvRecordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@{record.text}"
+                    tools:text="Record text" />
+
+                <EditText
+                    android:id="@+id/record_etRecordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:hint="@string/hint_recordText"
+                    android:inputType="textMultiLine"
+                    android:text="@={record.text}" />
+            </ViewSwitcher>
+
+            <ImageView
+                android:id="@+id/record_dragHandle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/desc_drag"
+                android:src="@drawable/ic_baseline_reorder_24" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/record_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true" />
+    </FrameLayout>
+</layout>

@@ -4,23 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="kotlin.jvm.functions.Function1" />
+        <import type="kotlin.Unit" />
         <variable
             name="dayContent"
             type="altline.recap.data.DayContent" />
+        <variable
+            name="onItemClick"
+            type="Function1&lt;Long, Unit>" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/divider_large"
-        android:orientation="vertical">
+        android:padding="@dimen/container_padding"
+        android:orientation="vertical"
+        android:onClick="@{_ -> onItemClick.invoke(dayContent.day.id)}">
 
         <TextView
             style="@style/TextAppearance.Recap.History.DayDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{dayContent.day.date}"
-            tools:text="" />
+            tools:text="Date" />
+
+        <!-- Records filled in programmatically -->
 
     </LinearLayout>
 </layout>

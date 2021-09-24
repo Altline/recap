@@ -9,18 +9,25 @@ data class Day(
     val date: LocalDate,
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0
+    val id: Long = 0
 )
 
 @Dao
 interface DayDao {
     @Insert
-    fun insert(vararg days: Day)
+    suspend fun insert(day: Day): Long
 
     @Delete
-    fun delete(vararg days: Day)
+    suspend fun delete(day: Day)
+
+    @Query("SELECT * FROM day WHERE date = :date")
+    fun getByDate(date: LocalDate): Flow<Day?>
 
     @Transaction
-    @Query("SELECT * FROM day")
+    @Query("SELECT * FROM day ORDER BY date DESC")
     fun getAllWithContent(): Flow<List<DayContent>>
+
+    @Transaction
+    @Query("SELECT * FROM day WHERE id = :dayID")
+    fun getByIdWithContent(dayID: Long): Flow<DayContent>
 }
