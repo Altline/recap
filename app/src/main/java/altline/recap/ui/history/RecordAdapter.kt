@@ -3,9 +3,12 @@ package altline.recap.ui.history
 import altline.androidutil.showSoftInput
 import altline.recap.data.Record
 import altline.recap.databinding.ItemRecordBinding
+import android.graphics.Point
 import android.graphics.Rect
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.core.graphics.contains
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.GlobalScope
@@ -82,22 +85,40 @@ class RecordAdapter(
 
             // Show ripple effect properly but still enable pressing the underlying items
             binding.recordOverlay.setOnTouchListener { _, event ->
-                val bounds = Rect()
+                val tv = binding.recordTvRecordText
+                val et = binding.recordEtRecordText
+                val dragHandle = binding.recordDragHandle
+                val touchPoint = Point(event.x.toInt(), event.y.toInt())
 
-                binding.recordTvRecordText.getHitRect(bounds)
-                if (event.actionMasked == MotionEvent.ACTION_UP &&
-                    bounds.contains(event.x.toInt(), event.y.toInt())
-                ) {
-                    binding.recordTvRecordText.performClick()
+                val tvBounds = Rect().also {
+                    tv.getHitRect(it)
+                }
+                val etBounds = Rect().also {
+                    et.getHitRect(it)
+                }
+                val dragHandleBounds = Rect().also {
+                    dragHandle.getHitRect(it)
                 }
 
-                binding.recordDragHandle.getHitRect(bounds)
-                if (event.actionMasked == MotionEvent.ACTION_DOWN &&
-                    bounds.contains(event.x.toInt(), event.y.toInt())
-                ) {
-                    dragHandlePressCallback?.invoke(this)
-                }
+                when {
+                    tv.isVisible
+                            && event.actionMasked == MotionEvent.ACTION_UP
+                            && tvBounds.contains(touchPoint) -> {
+                        binding.recordTvRecordText.performClick()
+                    }
 
+                    tv.isVisible
+                            && event.actionMasked == MotionEvent.ACTION_DOWN
+                            && dragHandleBounds.contains(touchPoint) -> {
+                        dragHandlePressCallback?.invoke(this)
+                    }
+
+                    et.isVisible
+                            && etBounds.contains(touchPoint) -> {
+                        binding.recordEtRecordText.dispatchTouchEvent(event)
+                        return@setOnTouchListener true
+                    }
+                }
                 false
             }
 
