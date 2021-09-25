@@ -48,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/space_small"
                 android:contentDescription="@string/desc_drag"
                 android:src="@drawable/ic_baseline_reorder_24" />
         </LinearLayout>
