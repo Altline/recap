@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
+
+    @Inject lateinit var appNotificationManager: AppNotificationManager
 
     private val fab get() = binding.fab
 
@@ -45,6 +48,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavView.setupWithNavController(navController)
+
+        appNotificationManager.context = applicationContext
+        appNotificationManager.createRecapNudgeChannel()
+        appNotificationManager.scheduleRecapNudge()
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -5,17 +5,23 @@
     <string name="title_calendar">Calendar</string>
     <string name="title_reminders">Reminders</string>
 
-    <string name="hint_recordText">What has happened?</string>
-
     <string name="btn_addRecord">+</string>
 
-    <string name="snack_recordDeleted">Record deleted</string>
+    <string name="hint_recordText">What has happened?</string>
 
-    <string name="undo">Undo</string>
+    <string name="snack_recordDeleted">Record deleted</string>
 
     <string name="desc_drag">Drag</string>
     <string name="desc_addDay">Add day</string>
     <string name="desc_addRecord">Add record</string>
+    
+    <string name="channel_name_recapNudge">Recap nudge</string>
+    <string name="channel_desc_recapNudge">Daily reminder to save your newest memories</string>
+
+    <string name="notif_title_recapNudge">Want to Recap today\'s events?</string>
+    <string name="notif_text_recapNudge">Save your most important memories.</string>
 
     <string name="template_record_text">\u2023 %s</string>
+
+    <string name="undo">Undo</string>
 </resources>
