@@ -46,7 +46,7 @@ class HistoryFragment : Fragment() {
     private fun addDay() {
         DatePickerFragment { _, year, month, day ->
             lifecycleScope.launch {
-                val date = LocalDate.of(year, month, day)
+                val date = LocalDate.of(year, month + 1, day)
                 val existingDay = viewModel.getDayByDate(date).first()
                 if (existingDay != null) {
                     navigateToDay(existingDay.id, autoNewRecord = true)

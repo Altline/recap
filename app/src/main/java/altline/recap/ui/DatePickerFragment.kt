@@ -13,7 +13,7 @@ class DatePickerFragment(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val today = LocalDate.now()
         val year = today.year
-        val month = today.monthValue
+        val month = today.monthValue - 1
         val day = today.dayOfMonth
 
         return DatePickerDialog(requireContext(), onDateSetListener, year, month, day)
