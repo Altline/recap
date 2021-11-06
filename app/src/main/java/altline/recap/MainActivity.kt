@@ -49,9 +49,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavView.setupWithNavController(navController)
 
-        appNotificationManager.context = applicationContext
-        appNotificationManager.createRecapNudgeChannel()
-        appNotificationManager.scheduleRecapNudge()
+        appNotificationManager.createRecapNudgeChannel(applicationContext)
+        appNotificationManager.scheduleRecapNudge(applicationContext)
     }
 
     override fun onSupportNavigateUp(): Boolean {

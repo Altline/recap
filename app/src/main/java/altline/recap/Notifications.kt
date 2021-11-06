@@ -13,13 +13,11 @@ import javax.inject.Singleton
 @Singleton
 class AppNotificationManager @Inject constructor() {
 
-    lateinit var context: Context
-
     companion object {
         const val CHANNEL_ID_RECAP_NUDGE = "recapNudge"
     }
 
-    fun createRecapNudgeChannel() {
+    fun createRecapNudgeChannel(context: Context) {
         val name = context.getString(R.string.channel_name_recapNudge)
         val descriptionText = context.getString(R.string.channel_desc_recapNudge)
         val importance = NotificationManager.IMPORTANCE_DEFAULT
@@ -31,13 +29,13 @@ class AppNotificationManager @Inject constructor() {
         notificationManager.createNotificationChannel(channel)
     }
 
-    fun scheduleRecapNudge() {
+    fun scheduleRecapNudge(context: Context) {
         val intent = Intent(context, RecapNudgeReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(
             context, 0, intent, 0
         )
 
-        val triggerTime = Calendar.getInstance().run {
+        val windowStartTime = Calendar.getInstance().run {
             timeInMillis = System.currentTimeMillis()
             if (get(Calendar.HOUR_OF_DAY) >= 21) add(Calendar.DAY_OF_YEAR, 1)
             set(Calendar.HOUR_OF_DAY, 21)
@@ -47,9 +45,10 @@ class AppNotificationManager @Inject constructor() {
         }
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
-        alarmManager?.set(
-            AlarmManager.RTC,
-            triggerTime,
+        alarmManager?.setWindow(
+            AlarmManager.RTC_WAKEUP,
+            windowStartTime,
+            2*60*60*1000.toLong(), // 2 hrs
             pendingIntent
         )
     }
@@ -81,7 +80,7 @@ class RecapNudgeReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         notificationManager.showRecapNudge(context)
-        notificationManager.scheduleRecapNudge()
+        notificationManager.scheduleRecapNudge(context)
     }
 }
 
@@ -93,7 +92,7 @@ class DeviceBootReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == "android.intent.action.BOOT_COMPLETED") {
-            notificationManager.scheduleRecapNudge()
+            notificationManager.scheduleRecapNudge(context)
         }
     }
 
