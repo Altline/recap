@@ -1,5 +1,11 @@
 # Recap  -  Changelog
 
+## [0.2.1] - 2021-11-06
+### Changed
+- Improve recap nudge alarm
+### Fixed
+- Fix calendar not showing the correct month when creating a new day
+
 ## [0.2.0] - 2021-10-06
 ### Added
 - Daily recap reminder notifications (recap nudge)
