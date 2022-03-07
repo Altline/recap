@@ -32,7 +32,7 @@ class AppNotificationManager @Inject constructor() {
     fun scheduleRecapNudge(context: Context) {
         val intent = Intent(context, RecapNudgeReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(
-            context, 0, intent, 0
+            context, 0, intent, PendingIntent.FLAG_IMMUTABLE
         )
 
         val windowStartTime = Calendar.getInstance().run {
@@ -57,7 +57,7 @@ class AppNotificationManager @Inject constructor() {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         val notification = Notification.Builder(context, CHANNEL_ID_RECAP_NUDGE)
             .setSmallIcon(R.drawable.ic_recap_logo)
             .setContentTitle(context.getString(R.string.notif_title_recapNudge))
